@@ -1,0 +1,95 @@
+.tslf-pad(@px){
+  padding : @px @px @px @px;
+}
+
+.tslf-margin(@px){
+  margin: @px @px @px @px;
+}
+
+.tslf-box(@bg,@fg,@rad,@pad,@margin,@border,@shadow){
+  .tslf-pad(@pad);
+  .tslf-margin(@margin);
+  box-shadow: @shadow;
+  background-color : @bg;
+  color : @fg;
+  &.hoverable{
+    &:hover{
+      color : lighten(@bg, 10%);
+      background: saturate(@fg,10%);
+      box-shadow: inset @shadow;
+    }
+  }
+}
+
+.tslf-table(@fcolor,@bcolor,@header-bg,@header-fg,@border){
+  color : @fcolor;
+  background-color: @bcolor;
+  &>th{
+    color : @header-fg;
+    background-color: @header-bg;
+  }
+}
+
+.tslf-table(@f,@b,@hb,@hf,@border) when (iscolor(@border)){
+  border: 1px solid @border;
+  & tr,th,td{
+    border: 1px solid @border;
+  }
+}
+
+.tslf-table(@f,@b,@hb,@hf,@border) when (isnumber(@border)){
+  border : @border solid saturate(@f,5%);
+  & tr,td{
+    border:@border solid saturate(@f,5%);
+  }
+  & th{
+    border : @border solid saturate(@hf,5%);
+  }
+}
+
+.tslf-table(@f,@b,@hb,@hf,@border) when not(isnumber(@border)) and not(iscolor(@border)){
+  border : @border;
+  & tr,th,td{
+    border : @border;
+  }
+}
+
+.tslf-button(@bg,@fg,@rad) when(iscolor(@color)){
+    a&{
+      text-decoration: none;
+    }
+
+    &:hover{
+      background-color: saturate(@bg,25%);
+      color : saturate(@fg, 25%);
+    }
+
+    &:focus{
+      background-color: saturate(@bg,5%);
+      color : saturate(@fg, 5%);
+    }
+
+    .tslf-pad(@rad/3);
+
+    border-radius: @rad;
+    background-color: @bg;
+    color : @fg;
+}
+
+.tslf-button{
+  &.info{
+    .tslf-button(green,white,15px);
+  }
+  &.warning{
+    .tslf-button(yellow,white,15px);
+  }
+  &.caution{
+    .tslf-button(red,white,15px);
+  }
+}
+
+#tslf-copy{
+  span&{
+    color : red;
+  }
+}

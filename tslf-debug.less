@@ -1,0 +1,37 @@
+.tslf-debug(@b) when not(@tslf-debug){}
+
+.tslf-debug(@border) when(@tslf-debug) and(iscolor(@border)){
+  border : 2px dashed @border;
+}
+
+.tslf-debug(@border) when(@tslf-debug) and not(iscolor(@alpha)){
+  border : @border;
+}
+
+div{
+  .tslf-debug(red);
+}
+
+p{
+  .tslf-debug(black);
+}
+
+span{
+  .tslf-debug(green);
+}
+
+table{
+  .tslf-debug(grey);
+}
+
+tr{
+  .tslf-debug(blue);
+}
+
+td{
+  .tslf-debug(cyan);
+}
+
+th{
+  .tslf-debug(lightblue);
+}
